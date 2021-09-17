@@ -1,0 +1,15 @@
+title: "Course1"
+topics:
+  - { title: "topic11", duration: 8 }
+  - { title: "topic12", duration: 8 }
+  - { title: "topic13", duration: 8 }
+  - { title: "topic14", duration: 8 }
+  - { title: "topic15", duration: 8 }
+  - { title: "topic16", duration: 8 }
+---
+title: "Course2"
+topics:
+  - { title: "topic21", duration: 8 }
+  - { title: "topic22", duration: 8 }
+  - { title: "topic23", duration: 8 }
+  - { title: "topic24", duration: 8 }
