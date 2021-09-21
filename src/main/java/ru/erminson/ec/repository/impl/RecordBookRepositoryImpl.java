@@ -1,16 +1,28 @@
 package ru.erminson.ec.repository.impl;
 
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+import ru.erminson.ec.Main;
+import ru.erminson.ec.dto.yaml.YamlRecordBookList;
 import ru.erminson.ec.entity.RecordBook;
 import ru.erminson.ec.entity.Student;
 import ru.erminson.ec.repository.RecordBookRepository;
+import ru.erminson.ec.repository.StudentRepository;
+import ru.erminson.ec.utils.RecordBookInitializer;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.InputStream;
+import java.util.*;
 
 public class RecordBookRepositoryImpl implements RecordBookRepository {
+    private static final String RECORD_BOOKS_FILE_NAME = "recordbooks.yaml";
+
     private final Map<Student, RecordBook> storage = new HashMap<>();
+    private StudentRepository studentRepository;
+
+    public RecordBookRepositoryImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+        init();
+    }
 
     @Override
     public boolean addStudentWithRecordBook(Student student, RecordBook recordBook) {
@@ -35,7 +47,28 @@ public class RecordBookRepositoryImpl implements RecordBookRepository {
     }
 
     @Override
-    public Set<Student> getAllStudents() {
-        return storage.keySet();
+    public List<Student> getAllStudents() {
+        return new ArrayList<>(storage.keySet());
+    }
+
+    private void init() {
+        Yaml yaml = new Yaml(new Constructor(YamlRecordBookList.class));
+        InputStream inputStream = Main
+                .class
+                .getClassLoader()
+                .getResourceAsStream(RECORD_BOOKS_FILE_NAME);
+
+        YamlRecordBookList list = yaml.loadAs(inputStream, YamlRecordBookList.class);
+        list.getRecordBooks().stream()
+                        .forEach(recordBookDto -> {
+                            String studentName = recordBookDto.getStudentName();
+                            try {
+                                Student student = studentRepository.getStudentByName(studentName);
+                                RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(recordBookDto);
+                                storage.put(student, recordBook);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
     }
 }
