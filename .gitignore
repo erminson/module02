@@ -90,3 +90,5 @@ derby.log
 generated-src
 data
 generatedFromThrift
+
+students_report_*
