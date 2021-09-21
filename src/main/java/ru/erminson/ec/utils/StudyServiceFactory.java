@@ -22,7 +22,7 @@ public class StudyServiceFactory {
         StudentRepository studentRepository = new StudentRepositoryImpl();
         StudentService studentService = new StudentServiceImpl(studentRepository);
 
-        RecordBookRepository recordBookRepository = new RecordBookRepositoryImpl();
+        RecordBookRepository recordBookRepository = new RecordBookRepositoryImpl(studentRepository);
         RecordBookService recordBookService = new RecordBookServiceImpl(recordBookRepository);
 
         CourseRepository courseRepository = new CourseRepositoryImpl();
