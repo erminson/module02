@@ -7,7 +7,9 @@ import ru.erminson.ec.repository.RecordBookRepository;
 import ru.erminson.ec.service.RecordBookService;
 import ru.erminson.ec.utils.RecordBookInitializer;
 
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 
 public class RecordBookServiceImpl implements RecordBookService {
     private final RecordBookRepository recordBookRepository;
@@ -41,7 +43,37 @@ public class RecordBookServiceImpl implements RecordBookService {
     }
 
     @Override
-    public Set<Student> getAllStudentsOnCourses() {
+    public List<Student> getAllStudentsOnCourses() {
         return recordBookRepository.getAllStudents();
+    }
+
+    @Override
+    public int getNumberRatedTopics(Student student) {
+        RecordBook recordBook = getRecordBookByStudent(student);
+
+        return (int)recordBook.getTopics().stream()
+                .filter(topicScore -> topicScore.getScore() != 0)
+                .count();
+    }
+
+    @Override
+    public int getNumberTopics(Student student) {
+        RecordBook recordBook = getRecordBookByStudent(student);
+
+        return recordBook.getTopics().size();
+    }
+
+    @Override
+    public int getDaysUntilEndOfCourseByStudent(Student student, LocalDate nowDate) {
+        RecordBook recordBook = getRecordBookByStudent(student);
+        LocalDate endOfCourseDate = recordBook.getEndDate();
+
+        if (nowDate.isAfter(endOfCourseDate)) {
+            return 0;
+        }
+
+        Period endOfCoursePeriod = Period.between(LocalDate.now(), endOfCourseDate);
+
+        return endOfCoursePeriod.getDays();
     }
 }
