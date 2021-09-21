@@ -4,15 +4,7 @@ import java.util.Objects;
 
 public class Topic {
     private String title;
-    private Integer duration;
-
-    public Topic() {
-    }
-
-    public Topic(String title, Integer duration) {
-        this.title = title;
-        this.duration = duration;
-    }
+    private Integer durationInHours;
 
     public String getTitle() {
         return title;
@@ -22,12 +14,12 @@ public class Topic {
         this.title = title;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getDurationInHours() {
+        return durationInHours;
     }
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
+    public void setDurationInHours(Integer durationInHours) {
+        this.durationInHours = durationInHours;
     }
 
     @Override
@@ -38,13 +30,13 @@ public class Topic {
         Topic module = (Topic) o;
 
         if (!Objects.equals(title, module.title)) return false;
-        return Objects.equals(duration, module.duration);
+        return Objects.equals(durationInHours, module.durationInHours);
     }
 
     @Override
     public int hashCode() {
         int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (duration != null ? duration.hashCode() : 0);
+        result = 31 * result + (durationInHours != null ? durationInHours.hashCode() : 0);
         return result;
     }
 
@@ -52,7 +44,7 @@ public class Topic {
     public String toString() {
         return "Module{" +
                 "title='" + title + '\'' +
-                ", duration=" + duration +
+                ", durationInHours=" + durationInHours +
                 '}';
     }
 }
