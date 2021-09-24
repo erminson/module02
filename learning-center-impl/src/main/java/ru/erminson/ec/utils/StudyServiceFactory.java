@@ -3,15 +3,15 @@ package ru.erminson.ec.utils;
 import ru.erminson.ec.repository.CourseRepository;
 import ru.erminson.ec.repository.RecordBookRepository;
 import ru.erminson.ec.repository.StudentRepository;
-import ru.erminson.ec.repository.impl.CourseRepositoryImpl;
-import ru.erminson.ec.repository.impl.RecordBookRepositoryImpl;
-import ru.erminson.ec.repository.impl.StudentRepositoryImpl;
+import ru.erminson.ec.repository.CourseRepositoryImpl;
+import ru.erminson.ec.repository.RecordBookRepositoryImpl;
+import ru.erminson.ec.repository.StudentRepositoryImpl;
 import ru.erminson.ec.service.RecordBookService;
 import ru.erminson.ec.service.StudentService;
 import ru.erminson.ec.service.StudyService;
-import ru.erminson.ec.service.impl.StudyServiceImpl;
-import ru.erminson.ec.service.impl.RecordBookServiceImpl;
-import ru.erminson.ec.service.impl.StudentServiceImpl;
+import ru.erminson.ec.service.StudyServiceImpl;
+import ru.erminson.ec.service.RecordBookServiceImpl;
+import ru.erminson.ec.service.StudentServiceImpl;
 
 public class StudyServiceFactory {
     private StudyServiceFactory() {

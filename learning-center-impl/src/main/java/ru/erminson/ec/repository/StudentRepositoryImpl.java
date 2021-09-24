@@ -1,11 +1,10 @@
-package ru.erminson.ec.repository.impl;
+package ru.erminson.ec.repository;
 
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import ru.erminson.ec.Main;
 import ru.erminson.ec.dto.yaml.YamlStudentList;
 import ru.erminson.ec.entity.Student;
-import ru.erminson.ec.repository.StudentRepository;
 
 import java.io.InputStream;
 import java.util.ArrayList;

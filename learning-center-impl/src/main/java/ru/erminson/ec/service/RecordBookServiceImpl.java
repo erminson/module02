@@ -1,10 +1,9 @@
-package ru.erminson.ec.service.impl;
+package ru.erminson.ec.service;
 
 import ru.erminson.ec.entity.Course;
 import ru.erminson.ec.entity.RecordBook;
 import ru.erminson.ec.entity.Student;
 import ru.erminson.ec.repository.RecordBookRepository;
-import ru.erminson.ec.service.RecordBookService;
 import ru.erminson.ec.utils.RecordBookInitializer;
 
 import java.time.LocalDate;

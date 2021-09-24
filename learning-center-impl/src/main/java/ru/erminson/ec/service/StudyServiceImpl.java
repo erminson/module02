@@ -1,12 +1,9 @@
-package ru.erminson.ec.service.impl;
+package ru.erminson.ec.service;
 
 import ru.erminson.ec.dto.report.StudentReport;
 import ru.erminson.ec.entity.*;
 import ru.erminson.ec.exception.ComparatorException;
 import ru.erminson.ec.repository.CourseRepository;
-import ru.erminson.ec.service.RecordBookService;
-import ru.erminson.ec.service.StudentService;
-import ru.erminson.ec.service.StudyService;
 import ru.erminson.ec.utils.ReportSaverUtils;
 import ru.erminson.ec.utils.StudentComparatorFactory;
 import ru.erminson.ec.utils.StudentReportFactory;

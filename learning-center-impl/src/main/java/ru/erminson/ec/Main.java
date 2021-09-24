@@ -5,11 +5,9 @@ import ru.erminson.ec.dto.report.StudentReport;
 import ru.erminson.ec.service.StudyService;
 import ru.erminson.ec.utils.StudyServiceFactory;
 import ru.erminson.ec.view.View;
-import ru.erminson.ec.view.impl.ConsoleView;
+import ru.erminson.ec.view.ConsoleView;
 
 import java.util.List;
-
-import static ru.erminson.ec.service.StudyService.SortType.*;
 
 public class Main {
     private final View view;

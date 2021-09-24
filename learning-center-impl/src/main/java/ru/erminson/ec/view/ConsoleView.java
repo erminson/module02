@@ -1,8 +1,7 @@
-package ru.erminson.ec.view.impl;
+package ru.erminson.ec.view;
 
 import ru.erminson.ec.dto.report.TopicScoreReport;
 import ru.erminson.ec.dto.report.StudentReport;
-import ru.erminson.ec.view.View;
 
 import java.util.List;
 
