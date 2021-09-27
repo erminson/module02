@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>learning-center-model</module>
         <module>learning-center-impl</module>
         <module>learning-center-api</module>
     </modules>
