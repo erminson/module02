@@ -1,7 +1,7 @@
 package ru.erminson.ec.impl.utils;
 
-import ru.erminson.ec.entity.RecordBook;
-import ru.erminson.ec.entity.Student;
+import ru.erminson.ec.model.entity.RecordBook;
+import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.api.service.RecordBookService;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package ru.erminson.ec.api.repository;
 
-import ru.erminson.ec.entity.Student;
+import ru.erminson.ec.model.entity.Student;
 
 import java.util.List;
 

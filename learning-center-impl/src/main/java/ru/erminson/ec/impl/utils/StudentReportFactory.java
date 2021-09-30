@@ -1,9 +1,9 @@
 package ru.erminson.ec.impl.utils;
 
-import ru.erminson.ec.dto.report.StudentReport;
-import ru.erminson.ec.dto.report.StudentReportBuilder;
-import ru.erminson.ec.dto.report.TopicScoreReport;
-import ru.erminson.ec.entity.*;
+import ru.erminson.ec.model.dto.report.StudentReport;
+import ru.erminson.ec.model.dto.report.StudentReportBuilder;
+import ru.erminson.ec.model.dto.report.TopicScoreReport;
+import ru.erminson.ec.model.entity.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

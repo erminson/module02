@@ -1,7 +1,7 @@
 package ru.erminson.ec.impl;
 
-import ru.erminson.ec.entity.Student;
-import ru.erminson.ec.dto.report.StudentReport;
+import ru.erminson.ec.model.entity.Student;
+import ru.erminson.ec.model.dto.report.StudentReport;
 import ru.erminson.ec.api.service.StudyService;
 import ru.erminson.ec.impl.utils.StudyServiceFactory;
 import ru.erminson.ec.api.view.View;

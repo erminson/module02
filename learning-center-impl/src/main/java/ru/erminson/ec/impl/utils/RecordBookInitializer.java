@@ -1,10 +1,10 @@
 package ru.erminson.ec.impl.utils;
 
-import ru.erminson.ec.dto.RecordBookDto;
-import ru.erminson.ec.entity.Course;
-import ru.erminson.ec.entity.RecordBook;
-import ru.erminson.ec.entity.Topic;
-import ru.erminson.ec.entity.TopicScore;
+import ru.erminson.ec.model.dto.RecordBookDto;
+import ru.erminson.ec.model.entity.Course;
+import ru.erminson.ec.model.entity.RecordBook;
+import ru.erminson.ec.model.entity.Topic;
+import ru.erminson.ec.model.entity.TopicScore;
 
 import java.time.Duration;
 import java.time.LocalDate;

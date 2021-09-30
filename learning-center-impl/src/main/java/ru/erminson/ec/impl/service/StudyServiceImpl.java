@@ -1,8 +1,8 @@
 package ru.erminson.ec.impl.service;
 
-import ru.erminson.ec.dto.report.StudentReport;
-import ru.erminson.ec.entity.*;
-import ru.erminson.ec.exception.ComparatorException;
+import ru.erminson.ec.model.dto.report.StudentReport;
+import ru.erminson.ec.model.entity.*;
+import ru.erminson.ec.model.exception.ComparatorException;
 import ru.erminson.ec.api.repository.CourseRepository;
 import ru.erminson.ec.api.service.RecordBookService;
 import ru.erminson.ec.api.service.StudentService;

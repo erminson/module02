@@ -1,6 +1,6 @@
 package ru.erminson.ec.impl.utils;
 
-import ru.erminson.ec.dto.report.StudentReport;
+import ru.erminson.ec.model.dto.report.StudentReport;
 
 import java.io.FileWriter;
 import java.io.IOException;

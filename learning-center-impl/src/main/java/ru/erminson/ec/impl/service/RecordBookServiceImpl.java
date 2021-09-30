@@ -1,8 +1,8 @@
 package ru.erminson.ec.impl.service;
 
-import ru.erminson.ec.entity.Course;
-import ru.erminson.ec.entity.RecordBook;
-import ru.erminson.ec.entity.Student;
+import ru.erminson.ec.model.entity.Course;
+import ru.erminson.ec.model.entity.RecordBook;
+import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.api.repository.RecordBookRepository;
 import ru.erminson.ec.api.service.RecordBookService;
 import ru.erminson.ec.impl.utils.RecordBookInitializer;

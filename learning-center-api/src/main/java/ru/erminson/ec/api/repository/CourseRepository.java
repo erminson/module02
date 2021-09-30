@@ -1,8 +1,8 @@
 package ru.erminson.ec.api.repository;
 
-import ru.erminson.ec.entity.Course;
-import ru.erminson.ec.entity.Topic;
-import ru.erminson.ec.exception.IllegalInitialDataException;
+import ru.erminson.ec.model.entity.Course;
+import ru.erminson.ec.model.entity.Topic;
+import ru.erminson.ec.model.exception.IllegalInitialDataException;
 
 import java.util.List;
 

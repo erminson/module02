@@ -1,8 +1,8 @@
 package ru.erminson.ec.api.service;
 
-import ru.erminson.ec.entity.RecordBook;
-import ru.erminson.ec.entity.Student;
-import ru.erminson.ec.dto.report.StudentReport;
+import ru.erminson.ec.model.entity.RecordBook;
+import ru.erminson.ec.model.entity.Student;
+import ru.erminson.ec.model.dto.report.StudentReport;
 
 import java.util.List;
 
