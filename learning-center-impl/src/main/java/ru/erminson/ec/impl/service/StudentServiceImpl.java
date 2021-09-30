@@ -1,7 +1,8 @@
-package ru.erminson.ec.service;
+package ru.erminson.ec.impl.service;
 
 import ru.erminson.ec.entity.Student;
-import ru.erminson.ec.repository.StudentRepository;
+import ru.erminson.ec.api.repository.StudentRepository;
+import ru.erminson.ec.api.service.StudentService;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package ru.erminson.ec;
+package ru.erminson.ec.impl;
 
 import ru.erminson.ec.entity.Student;
 import ru.erminson.ec.dto.report.StudentReport;
-import ru.erminson.ec.service.StudyService;
-import ru.erminson.ec.utils.StudyServiceFactory;
-import ru.erminson.ec.view.View;
-import ru.erminson.ec.view.ConsoleView;
+import ru.erminson.ec.api.service.StudyService;
+import ru.erminson.ec.impl.utils.StudyServiceFactory;
+import ru.erminson.ec.api.view.View;
+import ru.erminson.ec.impl.view.ConsoleView;
 
 import java.util.List;
 

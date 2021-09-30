@@ -1,4 +1,4 @@
-package ru.erminson.ec.service;
+package ru.erminson.ec.api.service;
 
 import ru.erminson.ec.entity.Course;
 import ru.erminson.ec.entity.RecordBook;

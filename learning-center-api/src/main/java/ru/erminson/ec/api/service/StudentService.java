@@ -1,13 +1,12 @@
-package ru.erminson.ec.repository;
+package ru.erminson.ec.api.service;
 
 import ru.erminson.ec.entity.Student;
 
 import java.util.List;
 
-public interface StudentRepository {
+public interface StudentService {
     boolean addStudent(String name);
-    boolean removeStudent(String name) throws Exception;
     Student getStudentByName(String name) throws Exception;
     List<Student> getAllStudents();
-    boolean isExistsStudent(String name);
+    boolean removeStudent(String name) throws Exception;
 }

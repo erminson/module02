@@ -1,4 +1,4 @@
-package ru.erminson.ec.view;
+package ru.erminson.ec.api.view;
 
 import ru.erminson.ec.dto.report.StudentReport;
 

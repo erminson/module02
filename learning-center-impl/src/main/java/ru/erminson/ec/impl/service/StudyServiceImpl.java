@@ -1,12 +1,15 @@
-package ru.erminson.ec.service;
+package ru.erminson.ec.impl.service;
 
 import ru.erminson.ec.dto.report.StudentReport;
 import ru.erminson.ec.entity.*;
 import ru.erminson.ec.exception.ComparatorException;
-import ru.erminson.ec.repository.CourseRepository;
-import ru.erminson.ec.utils.ReportSaverUtils;
-import ru.erminson.ec.utils.StudentComparatorFactory;
-import ru.erminson.ec.utils.StudentReportFactory;
+import ru.erminson.ec.api.repository.CourseRepository;
+import ru.erminson.ec.api.service.RecordBookService;
+import ru.erminson.ec.api.service.StudentService;
+import ru.erminson.ec.api.service.StudyService;
+import ru.erminson.ec.impl.utils.ReportSaverUtils;
+import ru.erminson.ec.impl.utils.StudentComparatorFactory;
+import ru.erminson.ec.impl.utils.StudentReportFactory;
 
 import java.time.LocalDate;
 import java.util.*;

@@ -1,11 +1,10 @@
-package ru.erminson.ec.service;
+package ru.erminson.ec.api.service;
 
 import ru.erminson.ec.entity.RecordBook;
 import ru.erminson.ec.entity.Student;
 import ru.erminson.ec.dto.report.StudentReport;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudyService {
     enum SortType { AVR, DAYS, NAME, START, COURSE }

@@ -1,17 +1,17 @@
-package ru.erminson.ec.utils;
+package ru.erminson.ec.impl.utils;
 
-import ru.erminson.ec.repository.CourseRepository;
-import ru.erminson.ec.repository.RecordBookRepository;
-import ru.erminson.ec.repository.StudentRepository;
-import ru.erminson.ec.repository.CourseRepositoryImpl;
-import ru.erminson.ec.repository.RecordBookRepositoryImpl;
-import ru.erminson.ec.repository.StudentRepositoryImpl;
-import ru.erminson.ec.service.RecordBookService;
-import ru.erminson.ec.service.StudentService;
-import ru.erminson.ec.service.StudyService;
-import ru.erminson.ec.service.StudyServiceImpl;
-import ru.erminson.ec.service.RecordBookServiceImpl;
-import ru.erminson.ec.service.StudentServiceImpl;
+import ru.erminson.ec.api.repository.CourseRepository;
+import ru.erminson.ec.api.repository.RecordBookRepository;
+import ru.erminson.ec.api.repository.StudentRepository;
+import ru.erminson.ec.impl.repository.CourseRepositoryImpl;
+import ru.erminson.ec.impl.repository.RecordBookRepositoryImpl;
+import ru.erminson.ec.impl.repository.StudentRepositoryImpl;
+import ru.erminson.ec.api.service.RecordBookService;
+import ru.erminson.ec.api.service.StudentService;
+import ru.erminson.ec.api.service.StudyService;
+import ru.erminson.ec.impl.service.StudyServiceImpl;
+import ru.erminson.ec.impl.service.RecordBookServiceImpl;
+import ru.erminson.ec.impl.service.StudentServiceImpl;
 
 public class StudyServiceFactory {
     private StudyServiceFactory() {

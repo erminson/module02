@@ -1,4 +1,4 @@
-package ru.erminson.ec.repository;
+package ru.erminson.ec.api.repository;
 
 import ru.erminson.ec.entity.Course;
 import ru.erminson.ec.entity.Topic;

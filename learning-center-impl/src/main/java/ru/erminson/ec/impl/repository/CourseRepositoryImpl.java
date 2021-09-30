@@ -1,12 +1,13 @@
-package ru.erminson.ec.repository;
+package ru.erminson.ec.impl.repository;
 
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-import ru.erminson.ec.Main;
+import ru.erminson.ec.impl.Main;
 import ru.erminson.ec.dto.yaml.YamlCourseList;
 import ru.erminson.ec.entity.Course;
 import ru.erminson.ec.entity.Topic;
 import ru.erminson.ec.exception.IllegalInitialDataException;
+import ru.erminson.ec.api.repository.CourseRepository;
 
 import java.io.InputStream;
 import java.util.ArrayList;

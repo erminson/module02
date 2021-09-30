@@ -1,4 +1,4 @@
-package ru.erminson.ec.utils;
+package ru.erminson.ec.impl.utils;
 
 import ru.erminson.ec.dto.report.StudentReport;
 import ru.erminson.ec.dto.report.StudentReportBuilder;

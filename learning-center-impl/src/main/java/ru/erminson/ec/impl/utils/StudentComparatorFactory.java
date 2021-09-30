@@ -1,8 +1,8 @@
-package ru.erminson.ec.utils;
+package ru.erminson.ec.impl.utils;
 
 import ru.erminson.ec.entity.RecordBook;
 import ru.erminson.ec.entity.Student;
-import ru.erminson.ec.service.RecordBookService;
+import ru.erminson.ec.api.service.RecordBookService;
 
 import java.time.LocalDate;
 import java.util.Comparator;
