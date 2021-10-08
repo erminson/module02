@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseRepositoryImpl implements CourseRepository {
-
-    private List<Course> courses = new ArrayList<>();
+    private final List<Course> courses;
 
     public CourseRepositoryImpl() {
+        courses = new ArrayList<>();
     }
 
     public CourseRepositoryImpl(List<Course> courses) {
