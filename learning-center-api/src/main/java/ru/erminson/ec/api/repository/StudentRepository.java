@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StudentRepository {
     boolean addStudent(String name);
-    boolean removeStudent(String name) throws Exception;
+    boolean removeStudent(String name);
     Student getStudentByName(String name) throws Exception;
     List<Student> getAllStudents();
     boolean isExistsStudent(String name);
