@@ -1,23 +1,20 @@
 package ru.erminson.ec.impl.repository;
 
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import ru.erminson.ec.impl.Main;
-import ru.erminson.ec.model.dto.yaml.YamlStudentList;
 import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.api.repository.StudentRepository;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentRepositoryImpl implements StudentRepository {
-    private static final String STUDENTS_FILE_NAME = "students.yaml";
-
-    private final List<Student> students = new ArrayList<>();
+    private final List<Student> students;
 
     public StudentRepositoryImpl() {
-        init();
+        this.students = new ArrayList<>();
+    }
+
+    public StudentRepositoryImpl(List<Student> students) {
+        this.students = students;
     }
 
     @Override
@@ -50,16 +47,5 @@ public class StudentRepositoryImpl implements StudentRepository {
         return students.stream()
                 .map(Student::getName)
                 .anyMatch(n -> n.equals(name));
-    }
-
-    private void init() {
-        Yaml yaml = new Yaml(new Constructor(YamlStudentList.class));
-        InputStream inputStream = Main
-                .class
-                .getClassLoader()
-                .getResourceAsStream(STUDENTS_FILE_NAME);
-
-        YamlStudentList list = yaml.loadAs(inputStream, YamlStudentList.class);
-        students.addAll(list.getStudents());
     }
 }
