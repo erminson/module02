@@ -20,12 +20,20 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public boolean addStudent(String name) {
         Student student = new Student(name);
+        if (students.contains(student)) {
+            return false;
+        }
         return students.add(student);
     }
 
     @Override
-    public boolean removeStudent(String name) throws Exception {
-        Student student = getStudentByName(name);
+    public boolean removeStudent(String name) {
+        Student student;
+        try {
+            student = getStudentByName(name);
+        } catch (Exception ex) {
+            return false;
+        }
         return students.remove(student);
     }
 
