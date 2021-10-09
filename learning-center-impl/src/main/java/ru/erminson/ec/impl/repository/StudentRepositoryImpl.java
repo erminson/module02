@@ -2,6 +2,7 @@ package ru.erminson.ec.impl.repository;
 
 import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.api.repository.StudentRepository;
+import ru.erminson.ec.model.exception.IllegalInitialDataException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,22 +28,17 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public boolean removeStudent(String name) {
-        Student student;
-        try {
-            student = getStudentByName(name);
-        } catch (Exception ex) {
-            return false;
-        }
+    public boolean removeStudent(String name) throws IllegalInitialDataException {
+        Student student = getStudentByName(name);
         return students.remove(student);
     }
 
     @Override
-    public Student getStudentByName(String name) throws Exception {
+    public Student getStudentByName(String name) throws IllegalInitialDataException {
         return students.stream()
                 .filter(student -> student.getName().equals(name))
                 .findFirst()
-                .orElseThrow(Exception::new);
+                .orElseThrow(IllegalInitialDataException::new);
     }
 
     @Override
