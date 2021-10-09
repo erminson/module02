@@ -15,20 +15,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean addStudent(String name) {
-        if (!studentRepository.isExistsStudent(name)) {
-            return studentRepository.addStudent(name);
-        }
+        return studentRepository.addStudent(name);
 
-        return false;
     }
 
     @Override
-    public Student getStudentByName(String name) throws Exception {
-        if (studentRepository.isExistsStudent(name)) {
+    public Student getStudentByName(String name) {
+        try {
             return studentRepository.getStudentByName(name);
+        } catch (Exception e) {
+            return null;
         }
-
-        return null;
     }
 
     @Override
@@ -37,11 +34,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean removeStudent(String name) throws Exception {
-        if (studentRepository.isExistsStudent(name)) {
+    public boolean removeStudent(String name) {
+        try {
             return studentRepository.removeStudent(name);
+        } catch (Exception e) {
+            return false;
         }
-
-        return false;
     }
 }
