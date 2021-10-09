@@ -3,10 +3,12 @@ package ru.erminson.ec.impl.utils;
 import ru.erminson.ec.api.repository.CourseRepository;
 import ru.erminson.ec.api.repository.RecordBookRepository;
 import ru.erminson.ec.api.repository.StudentRepository;
+import ru.erminson.ec.api.service.CourseService;
 import ru.erminson.ec.impl.repository.RecordBookRepositoryImpl;
 import ru.erminson.ec.api.service.RecordBookService;
 import ru.erminson.ec.api.service.StudentService;
 import ru.erminson.ec.api.service.StudyService;
+import ru.erminson.ec.impl.service.CourseServiceImpl;
 import ru.erminson.ec.impl.service.StudyServiceImpl;
 import ru.erminson.ec.impl.service.RecordBookServiceImpl;
 import ru.erminson.ec.impl.service.StudentServiceImpl;
@@ -24,7 +26,8 @@ public class StudyServiceFactory {
         RecordBookService recordBookService = new RecordBookServiceImpl(recordBookRepository);
 
         CourseRepository courseRepository = CourseRepositoryYamlInitializer.create();
+        CourseService courseService = new CourseServiceImpl(courseRepository);
 
-        return new StudyServiceImpl(studentService, recordBookService, courseRepository);
+        return new StudyServiceImpl(studentService, recordBookService, courseService);
     }
 }

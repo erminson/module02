@@ -1,5 +1,6 @@
 package ru.erminson.ec.impl.service;
 
+import ru.erminson.ec.api.service.CourseService;
 import ru.erminson.ec.model.dto.report.StudentReport;
 import ru.erminson.ec.model.entity.*;
 import ru.erminson.ec.model.exception.ComparatorException;
@@ -22,16 +23,16 @@ public class StudyServiceImpl implements StudyService {
 
     private final StudentService studentService;
     private final RecordBookService recordBookService;
-    private final CourseRepository courseRepository;
+    private final CourseService courseService;
 
     public StudyServiceImpl(
             StudentService studentService,
             RecordBookService recordBookService,
-            CourseRepository courseRepository
+            CourseService courseService
     ) {
         this.studentService = studentService;
         this.recordBookService = recordBookService;
-        this.courseRepository = courseRepository;
+        this.courseService = courseService;
     }
 
     @Override
@@ -51,7 +52,7 @@ public class StudyServiceImpl implements StudyService {
     @Override
     public boolean enrollStudentOnCourse(String name, String courseTitle) throws Exception {
         Student student = studentService.getStudentByName(name);
-        Course course = courseRepository.getCourseByTitle(courseTitle);
+        Course course = courseService.getCourseByTitle(courseTitle);
         recordBookService.enrollStudentOnCourse(student, course);
 
         return true;
@@ -198,7 +199,7 @@ public class StudyServiceImpl implements StudyService {
             student = studentService.getStudentByName(name);
             ability = canStudentCompleteCourseByStudentName(name);
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
 
         RecordBook recordBook = recordBookService.getRecordBookByStudent(student);
