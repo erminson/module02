@@ -50,6 +50,9 @@ public class RecordBookServiceImpl implements RecordBookService {
     @Override
     public int getNumberRatedTopics(Student student) {
         RecordBook recordBook = getRecordBookByStudent(student);
+        if (recordBook == null) {
+            return 0;
+        }
 
         return (int)recordBook.getTopics().stream()
                 .filter(topicScore -> topicScore.getScore() != 0)
@@ -72,7 +75,7 @@ public class RecordBookServiceImpl implements RecordBookService {
             return 0;
         }
 
-        Period endOfCoursePeriod = Period.between(LocalDate.now(), endOfCourseDate);
+        Period endOfCoursePeriod = Period.between(nowDate, endOfCourseDate);
 
         return endOfCoursePeriod.getDays();
     }
