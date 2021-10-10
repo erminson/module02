@@ -32,13 +32,14 @@ public class RecordBookRepositoryInitializer {
         list.getRecordBooks().stream()
                 .forEach(recordBookDto -> {
                     String studentName = recordBookDto.getStudentName();
+                    RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(recordBookDto);
+                    Student student;
                     try {
-                        Student student = studentRepository.getStudentByName(studentName);
-                        RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(recordBookDto);
-                        storage.put(student, recordBook);
+                        student = studentRepository.getStudentByName(studentName);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        student = new Student(studentName);
                     }
+                    storage.put(student, recordBook);
                 });
 
         return storage;
