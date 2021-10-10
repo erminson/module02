@@ -21,17 +21,10 @@ public class StudentComparatorFactory {
         };
     }
 
-    public static Comparator<Student> getDaysUntilEndOfCourseComparator(RecordBookService recordBookService) {
+    public static Comparator<Student> getDaysUntilEndOfCourseComparator(RecordBookService recordBookService, LocalDate nowDate) {
         return (o1, o2) -> {
-            int days1 = 0;
-            int days2 = 0;
-            try {
-                LocalDate nowDate = LocalDate.now();
-                days1 = recordBookService.getDaysUntilEndOfCourseByStudent(o1, nowDate);
-                days2 = recordBookService.getDaysUntilEndOfCourseByStudent(o2, nowDate);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            int days1 = recordBookService.getDaysUntilEndOfCourseByStudent(o1, nowDate);
+            int days2 = recordBookService.getDaysUntilEndOfCourseByStudent(o2, nowDate);
 
             return Integer.compare(days1, days2);
         };
