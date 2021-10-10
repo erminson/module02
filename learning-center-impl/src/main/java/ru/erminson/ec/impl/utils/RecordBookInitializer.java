@@ -19,14 +19,18 @@ public class RecordBookInitializer {
         throw new IllegalStateException("RecordBookInitializer utility class");
     }
 
-    public static RecordBook createRecordBookByCourse(Course course) {
+    public static RecordBook createRecordBookByCourse(Course course, LocalDate startDate) {
         String courseTitle = course.getTitle();
-        LocalDate startDate = LocalDate.now().plusDays(1);
         List<TopicScore> topics = course.getTopics().stream()
                 .map(RecordBookInitializer::createTopic)
                 .collect(Collectors.toList());
 
         return new RecordBook(courseTitle, startDate, topics);
+    }
+
+    public static RecordBook createRecordBookByCourse(Course course) {
+        LocalDate startDate = LocalDate.now().plusDays(1);
+        return createRecordBookByCourse(course, startDate);
     }
 
     private static TopicScore createTopic(Topic topic) {
