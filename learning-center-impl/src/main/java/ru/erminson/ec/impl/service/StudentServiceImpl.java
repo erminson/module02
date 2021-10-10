@@ -3,6 +3,7 @@ package ru.erminson.ec.impl.service;
 import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.api.repository.StudentRepository;
 import ru.erminson.ec.api.service.StudentService;
+import ru.erminson.ec.model.exception.IllegalInitialDataException;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class StudentServiceImpl implements StudentService {
     public boolean removeStudent(String name) {
         try {
             return studentRepository.removeStudent(name);
-        } catch (Exception e) {
+        } catch (IllegalInitialDataException e) {
             return false;
         }
     }
