@@ -117,7 +117,7 @@ public class StudyServiceImpl implements StudyService {
                 comparator = StudentComparatorFactory.getAverageComparator(recordBookService);
                 break;
             case DAYS:
-                comparator = StudentComparatorFactory.getDaysUntilEndOfCourseComparator(recordBookService);
+                comparator = StudentComparatorFactory.getDaysUntilEndOfCourseComparator(recordBookService, LocalDate.now());
                 break;
             case NAME:
                 comparator = StudentComparatorFactory.getStudentNameComparator();
