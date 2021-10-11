@@ -1,8 +1,6 @@
 package ru.erminson.ec.impl.service;
 
 import lombok.SneakyThrows;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.erminson.ec.api.repository.StudentRepository;
 import ru.erminson.ec.model.entity.Student;
@@ -18,7 +15,6 @@ import ru.erminson.ec.model.exception.IllegalInitialDataException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.MissingFormatArgumentException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
