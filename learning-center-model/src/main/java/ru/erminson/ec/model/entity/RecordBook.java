@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import ru.erminson.ec.model.exception.IllegalInitialDataException;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +23,11 @@ public class RecordBook {
         this.topics = topics;
     }
 
-    public TopicScore getTopicScoreByTitle(String topicTitle) throws IllegalInitialDataException {
+    public TopicScore getTopicScoreByTitle(String topicTitle) {
         return topics.stream()
                 .filter(topic -> topic.getTopicTitle().equals(topicTitle))
                 .findFirst()
-                .orElseThrow(IllegalInitialDataException::new);
+                .orElseGet(() -> new TopicScore("", Duration.ZERO));
     }
 
     public boolean isExistsTopic(String topicTitle) {
