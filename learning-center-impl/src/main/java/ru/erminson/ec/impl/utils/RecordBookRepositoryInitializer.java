@@ -32,7 +32,7 @@ public class RecordBookRepositoryInitializer {
         list.getRecordBooks().stream()
                 .forEach(recordBookDto -> {
                     String studentName = recordBookDto.getStudentName();
-                    RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(recordBookDto);
+                    RecordBook recordBook = RecordBookInitializer.createRecordBookByRecordBookDto(recordBookDto);
                     Student student;
                     try {
                         student = studentRepository.getStudentByName(studentName);
