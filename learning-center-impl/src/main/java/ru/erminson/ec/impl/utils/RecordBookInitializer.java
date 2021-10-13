@@ -19,7 +19,7 @@ public class RecordBookInitializer {
         throw new IllegalStateException("RecordBookInitializer utility class");
     }
 
-    public static RecordBook createRecordBookByCourse(Course course, LocalDate startDate) {
+    public static RecordBook createRecordBookByCourseAndStartDate(Course course, LocalDate startDate) {
         String courseTitle = course.getTitle();
         List<TopicScore> topics = course.getTopics().stream()
                 .map(RecordBookInitializer::createTopic)
@@ -30,16 +30,10 @@ public class RecordBookInitializer {
 
     public static RecordBook createRecordBookByCourse(Course course) {
         LocalDate startDate = LocalDate.now().plusDays(1);
-        return createRecordBookByCourse(course, startDate);
+        return createRecordBookByCourseAndStartDate(course, startDate);
     }
 
-    private static TopicScore createTopic(Topic topic) {
-        String topicTitle = topic.getTitle();
-        Duration durationInDays = Duration.ofDays((long) Math.ceil(topic.getDurationInHours() / TEACHING_HOURS_PER_DAY));
-        return new TopicScore(topicTitle, durationInDays);
-    }
-
-    public static RecordBook createRecordBookByCourse(RecordBookDto recordBookDto) {
+    public static RecordBook createRecordBookByRecordBookDto(RecordBookDto recordBookDto) {
         String courseTitle = recordBookDto.getCourseTitle();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -54,5 +48,11 @@ public class RecordBookInitializer {
                 .collect(Collectors.toList());
 
         return new RecordBook(courseTitle, localDate, topics);
+    }
+
+    private static TopicScore createTopic(Topic topic) {
+        String topicTitle = topic.getTitle();
+        Duration durationInDays = Duration.ofDays((long) Math.ceil(topic.getDurationInHours() / TEACHING_HOURS_PER_DAY));
+        return new TopicScore(topicTitle, durationInDays);
     }
 }

@@ -1,7 +1,6 @@
 package ru.erminson.ec.impl.utils;
 
 import lombok.SneakyThrows;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +44,7 @@ class RecordBookInitializerTest {
 
     @Test
     void shouldBeCreateCorrectRecordBookFromDto() {
-        RecordBook actualRecordBook = RecordBookInitializer.createRecordBookByCourse(recordBookDto);
+        RecordBook actualRecordBook = RecordBookInitializer.createRecordBookByRecordBookDto(recordBookDto);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(recordBookDto.getStartDate(), formatter);
 
