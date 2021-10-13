@@ -1,8 +1,5 @@
 package ru.erminson.ec.impl.service;
 
-import com.sun.source.tree.ModuleTree;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +13,6 @@ import ru.erminson.ec.impl.utils.RecordBookInitializer;
 import ru.erminson.ec.model.entity.*;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -170,7 +166,7 @@ class RecordBookServiceImplTest {
     @Test
     void shouldBeCorrectDaysUntilCourse() {
         LocalDate startDate = LocalDate.of(2021, 1, 1);
-        RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(COURSE1, startDate);
+        RecordBook recordBook = RecordBookInitializer.createRecordBookByCourseAndStartDate(COURSE1, startDate);
         LocalDate endOfCourseDate = recordBook.getEndDate();
 
         int expectedDays = 3;
@@ -186,7 +182,7 @@ class RecordBookServiceImplTest {
     @Test
     void shouldBeCorrectZeroDaysUntilCourse() {
         LocalDate startDate = LocalDate.of(2021, 1, 1);
-        RecordBook recordBook = RecordBookInitializer.createRecordBookByCourse(COURSE1, startDate);
+        RecordBook recordBook = RecordBookInitializer.createRecordBookByCourseAndStartDate(COURSE1, startDate);
         LocalDate endOfCourseDate = recordBook.getEndDate();
 
         LocalDate now = endOfCourseDate.plusDays(10);

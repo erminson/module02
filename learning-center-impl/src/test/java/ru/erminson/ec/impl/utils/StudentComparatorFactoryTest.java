@@ -22,7 +22,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +38,7 @@ class StudentComparatorFactoryTest {
         add(STUDENT2);
     }};
 
-    private final List<TopicScoreDto> topicScoreDtos1 = new ArrayList<>() {{
+    private final List<TopicScoreDto> topicScoresDto1 = new ArrayList<>() {{
         add(new TopicScoreDto("topic11", 86, 1));
         add(new TopicScoreDto("topic12", 100, 1));
         add(new TopicScoreDto("topic13", 67, 1));
@@ -47,9 +46,9 @@ class StudentComparatorFactoryTest {
         add(new TopicScoreDto("topic15", 99, 1));
         add(new TopicScoreDto("topic16", 0, 1));
     }};
-    private final RecordBookDto recordBookDto1 = new RecordBookDto("B", "CourseB", "2021-01-18", topicScoreDtos1);
+    private final RecordBookDto recordBookDto1 = new RecordBookDto("B", "CourseB", "2021-01-18", topicScoresDto1);
 
-    private final List<TopicScoreDto> topicScoreDtos2 = new ArrayList<>() {{
+    private final List<TopicScoreDto> topicScoresDto2 = new ArrayList<>() {{
         add(new TopicScoreDto("topic11", 100, 1));
         add(new TopicScoreDto("topic12", 100, 1));
         add(new TopicScoreDto("topic13", 100, 1));
@@ -57,10 +56,10 @@ class StudentComparatorFactoryTest {
         add(new TopicScoreDto("topic15", 0, 1));
         add(new TopicScoreDto("topic16", 0, 1));
     }};
-    private final RecordBookDto recordBookDto2 = new RecordBookDto("A", "CourseA", "2021-01-16", topicScoreDtos2);
+    private final RecordBookDto recordBookDto2 = new RecordBookDto("A", "CourseA", "2021-01-16", topicScoresDto2);
 
-    private final RecordBook RECORD_BOOK1 = RecordBookInitializer.createRecordBookByCourse(recordBookDto1);
-    private final RecordBook RECORD_BOOK2 = RecordBookInitializer.createRecordBookByCourse(recordBookDto2);
+    private final RecordBook RECORD_BOOK1 = RecordBookInitializer.createRecordBookByRecordBookDto(recordBookDto1);
+    private final RecordBook RECORD_BOOK2 = RecordBookInitializer.createRecordBookByRecordBookDto(recordBookDto2);
 
     @Mock
     StudentRepositoryImpl studentRepositoryMock;
