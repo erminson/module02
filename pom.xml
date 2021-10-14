@@ -12,6 +12,7 @@
     <modules>
         <module>learning-center-impl</module>
         <module>learning-center-api</module>
+        <module>learning-center-model</module>
         <module>hello-plugin</module>
     </modules>
 
