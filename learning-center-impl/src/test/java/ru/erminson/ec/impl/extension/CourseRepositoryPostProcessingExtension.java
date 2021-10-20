@@ -13,7 +13,9 @@ public class CourseRepositoryPostProcessingExtension implements TestInstancePost
         Field[] declaredFields = testInstance.getClass().getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(TestAutowired.class)) {
+                field.setAccessible(true);
                 field.set(testInstance, new CourseRepositoryImpl());
+                field.setAccessible(false);
             }
         }
     }

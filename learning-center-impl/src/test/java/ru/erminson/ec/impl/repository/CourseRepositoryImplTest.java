@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith({
         CourseRepositoryPostProcessingExtension.class
 })
-public class CourseRepositoryImplTest {
+class CourseRepositoryImplTest {
 
     @TestAutowired
     public CourseRepository courseRepository;
