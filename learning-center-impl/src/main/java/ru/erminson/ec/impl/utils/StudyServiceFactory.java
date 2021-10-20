@@ -4,7 +4,6 @@ import ru.erminson.ec.api.repository.CourseRepository;
 import ru.erminson.ec.api.repository.RecordBookRepository;
 import ru.erminson.ec.api.repository.StudentRepository;
 import ru.erminson.ec.api.service.CourseService;
-import ru.erminson.ec.impl.repository.RecordBookRepositoryImpl;
 import ru.erminson.ec.api.service.RecordBookService;
 import ru.erminson.ec.api.service.StudentService;
 import ru.erminson.ec.api.service.StudyService;

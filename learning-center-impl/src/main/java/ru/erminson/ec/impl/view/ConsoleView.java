@@ -1,26 +1,67 @@
 package ru.erminson.ec.impl.view;
 
-import ru.erminson.ec.model.dto.report.TopicScoreReport;
-import ru.erminson.ec.model.dto.report.StudentReport;
+import lombok.extern.slf4j.Slf4j;
 import ru.erminson.ec.api.view.View;
+import ru.erminson.ec.model.dto.report.StudentReport;
+import ru.erminson.ec.model.dto.report.TopicScoreReport;
 
 import java.util.List;
 
+@Slf4j
 public class ConsoleView implements View {
     private static final int NUMBER_FIXED_SYMBOLS = 25;
     private static final int NUMBER_SPACES = 3;
     private static final int COURSE_WIDTH = 6;
 
+    private static String getHeaderBlock(StudentReport studentReport) {
+        String headerTemplate = "%10s: %s%n";
+
+        StringBuilder sb = new StringBuilder("\n");
+        sb.append(String.format("Student report (%s)%n", studentReport.getReportDate()));
+        sb.append(String.format(headerTemplate, "Name", studentReport.getStudentName()));
+        sb.append(String.format(headerTemplate, "Course", studentReport.getCourseTitle()));
+        sb.append(String.format("%10s: %.1f%n", "Average", studentReport.getAverage()));
+        sb.append(String.format(headerTemplate, "Start Date", studentReport.getStartDate()));
+        sb.append(String.format(headerTemplate, "End Date", studentReport.getEndDate()));
+        sb.append(String.format(headerTemplate, "Ability", studentReport.getAbility()));
+
+        return sb.toString();
+    }
+
+    private static String getTableBlock(StudentReport studentReport, int maxCourseIndents) {
+        StringBuilder sb = new StringBuilder("\n");
+
+        sb.append(getHorizontalLine(maxCourseIndents));
+
+        String tableTemplate =
+                "%-10s %-10s %-" + maxCourseIndents + "s %5s%n";
+        sb.append(String.format(tableTemplate, "Start", "End", "Title", "Score"));
+
+        sb.append(getHorizontalLine(maxCourseIndents));
+
+        List<TopicScoreReport> topicScores = studentReport.getTopicScores();
+
+        topicScores.stream().forEach(
+                topicScore -> sb.append(String.format(
+                                tableTemplate,
+                                topicScore.getStartDate(),
+                                topicScore.getEndDate(),
+                                topicScore.getTopicTitle(),
+                                topicScore.getScore()
+                        )
+                )
+        );
+
+        return sb.toString();
+    }
+
+    private static String getHorizontalLine(int indents) {
+        return "-".repeat(NUMBER_FIXED_SYMBOLS + NUMBER_SPACES + indents) + "\n";
+    }
+
     @Override
     public void printStudentReport(StudentReport studentReport) {
-        String headerTemplate = "%10s: %s%n";
-        System.out.printf("Student report (%s)%n", studentReport.getReportDate());
-        System.out.printf(headerTemplate, "Name", studentReport.getStudentName());
-        System.out.printf(headerTemplate, "Course", studentReport.getCourseTitle());
-        System.out.printf("%10s: %.1f%n", "Average", studentReport.getAverage());
-        System.out.printf(headerTemplate, "Start Date", studentReport.getStartDate());
-        System.out.printf(headerTemplate, "End Date", studentReport.getEndDate());
-        System.out.printf(headerTemplate, "Ability", studentReport.getAbility());
+        log.info(getHeaderBlock(studentReport));
 
         List<TopicScoreReport> topicScores = studentReport.getTopicScores();
         int maxIndents = topicScores.stream()
@@ -31,29 +72,6 @@ public class ConsoleView implements View {
 
         int maxCourseIndents = Math.max(COURSE_WIDTH, maxIndents);
 
-        printLine(maxCourseIndents);
-
-        String tableTemplate =
-                "%-10s %-10s %-" + maxCourseIndents + "s %5s%n";
-
-        System.out.printf(tableTemplate, "Start", "End", "Title", "Score");
-
-        printLine(maxCourseIndents);
-
-        topicScores.stream().forEach(
-                topicScore -> System.out.printf(
-                        tableTemplate,
-                        topicScore.getStartDate(),
-                        topicScore.getEndDate(),
-                        topicScore.getTopicTitle(),
-                        topicScore.getScore()
-                )
-        );
-
-        printLine(maxCourseIndents);
-    }
-
-    private void printLine(int indents) {
-        System.out.println("-".repeat(NUMBER_FIXED_SYMBOLS + NUMBER_SPACES + indents));
+        log.info(getTableBlock(studentReport, maxCourseIndents));
     }
 }

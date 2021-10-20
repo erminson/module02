@@ -12,7 +12,7 @@ public interface StudyService {
 
     boolean addStudentByName(String name);
 
-    boolean removeStudentByName(String name) throws Exception;
+    boolean removeStudentByName(String name);
 
     boolean enrollStudentOnCourse(String name, String courseTitle);
 

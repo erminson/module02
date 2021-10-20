@@ -1,14 +1,16 @@
 package ru.erminson.ec.impl;
 
-import ru.erminson.ec.model.entity.Student;
-import ru.erminson.ec.model.dto.report.StudentReport;
+import lombok.extern.slf4j.Slf4j;
 import ru.erminson.ec.api.service.StudyService;
-import ru.erminson.ec.impl.utils.StudyServiceFactory;
 import ru.erminson.ec.api.view.View;
+import ru.erminson.ec.impl.utils.StudyServiceFactory;
 import ru.erminson.ec.impl.view.ConsoleView;
+import ru.erminson.ec.model.dto.report.StudentReport;
+import ru.erminson.ec.model.entity.Student;
 
 import java.util.List;
 
+@Slf4j
 public class Main {
     private final View view;
     private final StudyService studyService;
@@ -20,24 +22,22 @@ public class Main {
 
     public static void main(String[] args) {
         Main app = new Main();
-
-        try {
-            app.fakeBusinessActivities();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        app.fakeBusinessActivities();
     }
 
-    private void fakeBusinessActivities() throws Exception {
+    private static void printLine() {
+        log.debug("-----------------------------------------------------------------");
+    }
+
+    private void fakeBusinessActivities() {
         List<Student> studentsOnCourses = studyService.getAllStudentsOnCourses();
 
-        // print student reports
         for (Student student : studentsOnCourses) {
             StudentReport report = studyService.getStudentReportByStudentName(student.getName());
             view.printStudentReport(report);
         }
 
-        System.out.println("-----------------------------------------------------------------");
+        printLine();
 
         String studentName = "Lev";
         String courseTitle = "Course1";
@@ -47,7 +47,7 @@ public class Main {
         StudentReport studentReportLev = studyService.getStudentReportByStudentName(studentName);
         view.printStudentReport(studentReportLev);
 
-        System.out.println("-----------------------------------------------------------------");
+        printLine();
 
         studentName = "Ivan";
         StudentReport report = studyService.getStudentReportByStudentName(studentName);
@@ -56,21 +56,6 @@ public class Main {
         report = studyService.getStudentReportByStudentName(studentName);
         view.printStudentReport(report);
 
-        System.out.println("-----------------------------------------------------------------");
-
-//        System.out.println("All students:                 " + studyService.getAllStudents());
-//        System.out.println("Students on courses:          " + studyService.getAllStudentsOnCourses());
-//        System.out.println("Students on courses (sorted AVR asc): " + studyService.getAllStudentsOnCoursesSortedBy(AVR, true));
-//        System.out.println("Students on courses (sorted AVR des): " + studyService.getAllStudentsOnCoursesSortedBy(AVR, false));
-//        System.out.println("Students on courses (sorted DAYS asc): " + studyService.getAllStudentsOnCoursesSortedBy(DAYS, true));
-//        System.out.println("Students on courses (sorted DAYS des): " + studyService.getAllStudentsOnCoursesSortedBy(DAYS, false));
-//        System.out.println("Students on courses (sorted NAME asc): " + studyService.getAllStudentsOnCoursesSortedBy(NAME, true));
-//        System.out.println("Students on courses (sorted NAME des): " + studyService.getAllStudentsOnCoursesSortedBy(NAME, false));
-//        System.out.println("Students on courses (sorted START asc): " + studyService.getAllStudentsOnCoursesSortedBy(START, true));
-//        System.out.println("Students on courses (sorted START des): " + studyService.getAllStudentsOnCoursesSortedBy(START, false));
-//        System.out.println("Students on courses (sorted COURSE asc): " + studyService.getAllStudentsOnCoursesSortedBy(COURSE, true));
-//        System.out.println("Students on courses (sorted COURSE des): " + studyService.getAllStudentsOnCoursesSortedBy(COURSE, false));
-//        System.out.println("Students on courses:          " + studyService.getAllStudentsOnCourses());
-//        System.out.println("Students out of courses:      " + studyService.getAllStudentsOutCourses());
+        printLine();
     }
 }

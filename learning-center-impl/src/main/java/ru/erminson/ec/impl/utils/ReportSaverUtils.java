@@ -1,5 +1,6 @@
 package ru.erminson.ec.impl.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.erminson.ec.model.dto.report.StudentReport;
 
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 public class ReportSaverUtils {
     private static final String DATE_TEMPLATE = "yyyy-MM-dd";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TEMPLATE);
@@ -115,14 +117,13 @@ public class ReportSaverUtils {
     }
 
     private static void save(String reportString) {
-        System.out.println(reportString);
+        log.info(reportString);
         String reportDate = LocalDate.now().format(FORMATTER);
         String fileName = String.format(REPORT_FILE_NAME_TEMPLATE, reportDate);
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             fileWriter.write(reportString);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
-
 }
