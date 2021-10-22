@@ -15,8 +15,13 @@ import ru.erminson.ec.model.entity.Student;
 import ru.erminson.ec.model.entity.TopicScore;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -237,6 +242,13 @@ public class StudyServiceImpl implements StudyService {
             return null;
         }
 
+        //
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         boolean ability = canStudentCompleteCourseByStudentName(name, nowDate);
         RecordBook recordBook = recordBookService.getRecordBookByStudent(student);
 
@@ -254,6 +266,37 @@ public class StudyServiceImpl implements StudyService {
         List<StudentReport> reports = students.stream()
                 .map(student -> getStudentReportByStudentName(student.getName(), nowDate))
                 .collect(Collectors.toList());
+
+        ReportSaverUtils.saveStudentReports(reports);
+    }
+
+    @Override
+    public void saveStudentReportsWithMultithreading() {
+        List<Student> students = getAllStudentsOnCourses();
+        ExecutorService executorService = Executors.newFixedThreadPool(students.size());
+
+        List<Future<StudentReport>> futureReports = new ArrayList<>();
+        for (Student student: students) {
+            Future<StudentReport> futureReport = executorService.submit(
+                    () -> getStudentReportByStudentName(student.getName())
+            );
+            futureReports.add(futureReport);
+        }
+
+        List<StudentReport> reports = new ArrayList<>();
+        for (Future<StudentReport> futureReport: futureReports) {
+            try {
+                StudentReport report = futureReport.get();
+                reports.add(report);
+            } catch (InterruptedException e) {
+                log.error(e.getMessage());
+                Thread.currentThread().interrupt();
+            } catch (ExecutionException e) {
+                log.error(e.getMessage());
+            } finally {
+                executorService.shutdown();
+            }
+        }
 
         ReportSaverUtils.saveStudentReports(reports);
     }

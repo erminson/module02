@@ -51,4 +51,6 @@ public interface StudyService {
     void saveStudentReports();
 
     void saveStudentReports(LocalDate nowDate);
+
+    void saveStudentReportsWithMultithreading();
 }
