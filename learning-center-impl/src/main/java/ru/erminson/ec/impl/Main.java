@@ -57,5 +57,23 @@ public class Main {
         view.printStudentReport(report);
 
         printLine();
+
+        // Save report using single thread
+        Runnable runnable = () -> studyService.saveStudentReports();
+        measureElapsedTime(runnable);
+
+        // Save report using single thread
+        Runnable runnable2 = () -> studyService.saveStudentReportsWithMultithreading();
+        measureElapsedTime(runnable2);
+    }
+
+    void measureElapsedTime(Runnable runnable) {
+        long startTime = System.nanoTime();
+        runnable.run();
+        long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
+        log.info("Execution time in milliseconds: {}", timeElapsed / 1000000);
     }
 }
+
+
