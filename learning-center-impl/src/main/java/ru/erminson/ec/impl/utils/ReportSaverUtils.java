@@ -117,7 +117,7 @@ public class ReportSaverUtils {
     }
 
     private static void save(String reportString) {
-        log.info(reportString);
+        log.info("\n{}", reportString);
         String reportDate = LocalDate.now().format(FORMATTER);
         String fileName = String.format(REPORT_FILE_NAME_TEMPLATE, reportDate);
         try (FileWriter fileWriter = new FileWriter(fileName)) {
