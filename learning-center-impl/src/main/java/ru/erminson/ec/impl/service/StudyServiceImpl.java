@@ -1,5 +1,6 @@
 package ru.erminson.ec.impl.service;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.erminson.ec.api.service.CourseService;
 import ru.erminson.ec.api.service.RecordBookService;
 import ru.erminson.ec.api.service.StudentService;
@@ -18,6 +19,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class StudyServiceImpl implements StudyService {
     private static final int PASSING_SCORE = 75;
     private static final int MIN_SCORE = 1;
@@ -56,6 +58,7 @@ public class StudyServiceImpl implements StudyService {
         Student student = studentService.getStudentByName(name);
         Course course = courseService.getCourseByTitle(courseTitle);
         if (student == null || course == null) {
+            log.error("Student or record book not found: {} {}", name, courseTitle);
             return false;
         }
 
@@ -66,6 +69,7 @@ public class StudyServiceImpl implements StudyService {
     public boolean dismissStudentFromCourse(String name) {
         Student student = studentService.getStudentByName(name);
         if (student == null) {
+            log.error("Student not found: {}", name);
             return false;
         }
 
@@ -81,6 +85,7 @@ public class StudyServiceImpl implements StudyService {
         Student student = studentService.getStudentByName(name);
         RecordBook recordBook = recordBookService.getRecordBookByStudent(student);
         if (student == null || recordBook == null) {
+            log.error("Student or record book not found: {} {}", name, topicTitle);
             return false;
         }
 
@@ -107,6 +112,7 @@ public class StudyServiceImpl implements StudyService {
     public RecordBook getRecordBookByStudentName(String name) {
         Student student = studentService.getStudentByName(name);
         if (student == null) {
+            log.error("Student not found: {}", name);
             return null;
         }
 
@@ -197,6 +203,7 @@ public class StudyServiceImpl implements StudyService {
     public boolean canStudentCompleteCourseByStudentName(String name, LocalDate nowDate) {
         Student student = studentService.getStudentByName(name);
         if (student == null) {
+            log.error("Student not found: {}", name);
             return false;
         }
 
@@ -226,6 +233,7 @@ public class StudyServiceImpl implements StudyService {
     public StudentReport getStudentReportByStudentName(String name, LocalDate nowDate) {
         Student student = studentService.getStudentByName(name);
         if (student == null) {
+            log.error("Student not found: {}", name);
             return null;
         }
 
