@@ -18,10 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -246,7 +243,8 @@ public class StudyServiceImpl implements StudyService {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
 
         boolean ability = canStudentCompleteCourseByStudentName(name, nowDate);
@@ -274,31 +272,35 @@ public class StudyServiceImpl implements StudyService {
     public void saveStudentReportsWithMultithreading() {
         List<Student> students = getAllStudentsOnCourses();
         ExecutorService executorService = Executors.newFixedThreadPool(students.size());
-
         List<Future<StudentReport>> futureReports = new ArrayList<>();
-        for (Student student: students) {
-            Future<StudentReport> futureReport = executorService.submit(
-                    () -> getStudentReportByStudentName(student.getName())
-            );
-            futureReports.add(futureReport);
+        try {
+            for (Student student : students) {
+                Future<StudentReport> futureReport = executorService.submit(
+                        () -> getStudentReportByStudentName(student.getName())
+                );
+                futureReports.add(futureReport);
+            }
+        } finally {
+            executorService.shutdown();
         }
 
-        List<StudentReport> reports = new ArrayList<>();
-        for (Future<StudentReport> futureReport: futureReports) {
-            try {
+        try {
+            executorService.awaitTermination(10, TimeUnit.SECONDS);
+
+            List<StudentReport> reports = new ArrayList<>();
+            for (Future<StudentReport> futureReport : futureReports) {
                 StudentReport report = futureReport.get();
                 reports.add(report);
-            } catch (InterruptedException e) {
-                log.error(e.getMessage());
-                Thread.currentThread().interrupt();
-            } catch (ExecutionException e) {
-                log.error(e.getMessage());
-            } finally {
-                executorService.shutdown();
             }
-        }
 
-        ReportSaverUtils.saveStudentReports(reports);
+            ReportSaverUtils.saveStudentReports(reports);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            log.error(e.getMessage());
+        }
     }
 
     @Override
